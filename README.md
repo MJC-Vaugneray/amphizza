@@ -23,7 +23,7 @@ Application de commande de pizza future-proof, post-quantique in the blockchain.
                         `--..____,,--'
         
         
-
+```
  _______  _______  _______          _________ _______  _______  _______ 
 (  ___  )(       )(  ____ )|\     /|\__   __// ___   )/ ___   )(  ___  )
 | (   ) || () () || (    )|| )   ( |   ) (   \/   )  |\/   )  || (   ) |
@@ -32,7 +32,7 @@ Application de commande de pizza future-proof, post-quantique in the blockchain.
 | (   ) || |   | || (      | (   ) |   | |     /   /    /   /  | (   ) |
 | )   ( || )   ( || )      | )   ( |___) (___ /   (_/\ /   (_/\| )   ( |
 |/     \||/     \||/       |/     \|\_______/(_______/(_______/|/     \|
-
+```
 
 ## Docker
 

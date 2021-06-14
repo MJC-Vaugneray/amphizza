@@ -18,4 +18,4 @@ jobs:
         env: # Or as an environment variable
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-        run: mvn -B spring-boot:build-image -Dimage.tag=${GITHUB_REF##*/}
+        run: mvn -B spring-boot:build-image -Dimage.tag=${GITHUB_REF##*/} -Dimage.publish=true

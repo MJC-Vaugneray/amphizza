@@ -16,6 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <image.tag>default</image.tag>
+        <image.publish>false</image.publish>
     </properties>
     <dependencies>
         <dependency>
@@ -66,9 +67,9 @@
                         </publishRegistry>
                     </docker>
                     <image>
-                        <name>registry.hub.docker.com/mjcvaugneray/amphizza</name>
+                        <name>registry.hub.docker.com/mjcvaugneray/amphizza:${image.tag}</name>
                     </image>
-                    <publish>true</publish>
+                    <publish>${image.publish}</publish>
                 </configuration>
             </plugin>
             <plugin>

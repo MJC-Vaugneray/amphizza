@@ -77,7 +77,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.6</version>
                 <configuration>
-                    <nodeVersion>v9.11.2</nodeVersion>
+                    <nodeVersion>v16.3.0</nodeVersion>
                 </configuration>
                 <executions>
                     <execution>
@@ -91,6 +91,15 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>npm-build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

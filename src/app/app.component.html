@@ -1,0 +1,62 @@
+<h2>Orders</h2>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>N°</td>
+      <td>Type</td>
+      <td>Status</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.id}}</td>
+      <td>{{order.pizzaType}}</td>
+      <td>{{order.status}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Pizzas</h2>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>Type</td>
+      <td>Doing</td>
+      <td>Ready</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pizza of pizzas">
+      <td>{{pizza.pizzaType}}</td>
+      <td>{{pizza.doingNumber}}</td>
+      <td>{{pizza.readyNumber}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Actions</h2>
+<div>
+  <div>
+    <h3>Order</h3>
+    <button (click)="order('CYCLOPE')">Cyclope</button>
+    <button (click)="order('QUATRE_FROMAGES')">4Fromages</button>
+    <button (click)="order('PROVENCAL')">Provencal</button>
+  </div>
+  <div>
+    <h3>Ready</h3>
+    <button (click)="ready('CYCLOPE')">Cyclope</button>
+    <button (click)="ready('QUATRE_FROMAGES')">4Fromages</button>
+    <button (click)="ready('PROVENCAL')">Provencal</button>
+  </div>
+  <div>
+    <h3>Delivered</h3>
+    <button (click)="delivered('CYCLOPE')">Cyclope</button>
+    <button (click)="delivered('QUATRE_FROMAGES')">4Fromages</button>
+    <button (click)="delivered('PROVENCAL')">Provencal</button>
+  </div>
+
+</div>

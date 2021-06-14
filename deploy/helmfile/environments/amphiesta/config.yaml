@@ -1,0 +1,7 @@
+environments:
+  amphiesta:
+    values:
+      - ../../environments/amphiesta/values.yaml
+
+helmDefaults:
+  kubeContext: kubernetes-admin@amphiesta

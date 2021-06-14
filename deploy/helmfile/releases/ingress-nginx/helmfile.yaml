@@ -1,0 +1,19 @@
+---
+bases:
+  - "../../environments/{{ .Environment.Name }}/config.yaml"
+
+---
+{{- if .Environment.Values | get "ingress-nginx.enabled" true }}
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+
+releases:
+  - name: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    namespace: ingress
+    version: 3.29.0
+    installed: {{ .Values | getOrNil "ingress-nginx.installed" | default true }}
+    values:
+      - values.yaml.gotmpl
+{{- end }}

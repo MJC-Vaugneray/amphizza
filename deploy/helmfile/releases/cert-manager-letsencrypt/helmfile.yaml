@@ -1,0 +1,18 @@
+---
+bases:
+  - "../../environments/{{ .Environment.Name }}/config.yaml"
+
+---
+{{- if .Environment.Values | get "cert-manager.enabled" true }}
+repositories:
+  - name: dworks
+    url: https://devops-works.github.io/helm-charts/
+
+releases:
+  - name: cert-manager-letsencrypt
+    chart: dworks/cert-manager-issuer
+    version: 0.1.0
+    installed: {{ .Values | getOrNil "cert-manager.installed" | default true }}
+    values:
+      - issuer-prod.yaml.gotmpl
+{{- end }}

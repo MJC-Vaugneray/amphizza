@@ -1,0 +1,26 @@
+---
+bases:
+  - "../../environments/{{ .Environment.Name }}/config.yaml"
+
+---
+{{- if .Environment.Values | get "cert-manager.enabled" true }}
+helmDefaults:
+  wait: true
+
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+
+releases:
+  - name: cert-manager
+    chart: jetstack/cert-manager
+    namespace: ingress
+    version: v1.3.1
+    installed: {{ .Values | getOrNil "cert-manager.installed" | default true }}
+    set:
+      - name: installCRDs
+        value: true
+    values:
+      - values.yaml.gotmpl
+    wait: true
+{{- end }}

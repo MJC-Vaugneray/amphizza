@@ -1,0 +1,20 @@
+---
+bases:
+  - "../../environments/{{ .Environment.Name }}/config.yaml"
+
+---
+{{- if .Environment.Values | get "prometheus-operator.enabled" true }}
+repositories:
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts/
+
+releases:
+  - name: promstack
+    chart: prometheus-community/kube-prometheus-stack
+    namespace: metro
+    version: 16.7.0
+    disableValidation: true
+    installed: true
+    values:
+      - values.yaml.gotmpl
+{{- end }}

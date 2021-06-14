@@ -1,0 +1,32 @@
+replicaCount: 2
+
+image:
+  repository: mjcvaugneray/amphizza
+  pullPolicy: Always
+  tag: "main"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: amphiesta.mjc-vaugneray.fr
+      paths:
+      - path: /
+        backend:
+          serviceName: amphiesta.mjc-vaugneray.fr
+          servicePort: 80
+  tls:
+    - secretName: amphizza-tls
+      hosts:
+        - amphiesta.mjc-vaugneray.fr
+

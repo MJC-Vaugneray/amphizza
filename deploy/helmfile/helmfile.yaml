@@ -1,9 +1,9 @@
 helmfiles:
-  - "releases/promstack/helmfile.yaml"
-  - "releases/ingress-nginx/helmfile.yaml"
-  - "releases/cert-manager/helmfile.yaml"
-  - "releases/cert-manager-letsencrypt/helmfile.yaml"
-  #- "releases/oauth2-proxy/helmfile.yaml"
+  #- "releases/promstack/helmfile.yaml"
+  #- "releases/ingress-nginx/helmfile.yaml"
+  #- "releases/cert-manager/helmfile.yaml"
+  #- "releases/cert-manager-letsencrypt/helmfile.yaml"
+  - "releases/amphizza/helmfile.yaml"
 environments:
   amphiesta:
 

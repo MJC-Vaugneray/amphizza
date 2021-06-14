@@ -14,7 +14,7 @@
     <name>amphizza</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -56,6 +56,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <docker>
+                        <publishRegistry>
+                            <url>https://registry.hub.docker.com</url>
+                            <username>${env.DOCKER_HUB_USERNAME}</username>
+                            <password>${env.DOCKER_HUB_ACCESS_TOKEN}</password>
+                        </publishRegistry>
+                    </docker>
+                    <image>
+                        <name>registry.hub.docker.com/mjcvaugneray/amphizza</name>
+                    </image>
+                    <publish>true</publish>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>

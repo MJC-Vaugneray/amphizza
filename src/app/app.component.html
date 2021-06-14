@@ -13,6 +13,7 @@
       <td>{{order.id}}</td>
       <td>{{order.pizzaType}}</td>
       <td>{{order.status}}</td>
+      <td><button (click)="printBarcode('/barcode?text=' + order.id)">Print ticket</button> </td>
     </tr>
     </tbody>
   </table>
@@ -54,9 +55,7 @@
   </div>
   <div>
     <h3>Delivered</h3>
-    <button (click)="delivered('CYCLOPE')">Cyclope</button>
-    <button (click)="delivered('QUATRE_FROMAGES')">4Fromages</button>
-    <button (click)="delivered('PROVENCAL')">Provencal</button>
+    <input (keyup)="onKey($event)">
   </div>
 
 </div>

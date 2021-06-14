@@ -29,6 +29,12 @@ public class Order {
         return this;
     }
 
+
+    public Order unready() {
+        this.status = OrderStatus.ORDERED;
+        return this;
+    }
+
     public Order pickedUp() {
         this.status = OrderStatus.PICKED_UP;
         return this;

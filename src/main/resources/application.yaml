@@ -1,0 +1,21 @@
+#management.metrics.export.influx:
+#  auto-create-db: true # Whether to create the Influx database if it does not exist before attempting to publish metrics to it. (Default: true)
+#  db: mydb # Tag that will be mapped to "host" when shipping metrics to Influx. (Defaut: mydb)
+#  enabled: true # Whether exporting of metrics to this backend is enabled. (Default: true)
+#  password: mysecret # Login password of the Influx server.
+#  uri: http://localhost:8086 # URI of the Influx server. (Default: http://localhost:8086)
+#  user-name:
+
+spring.datasource.url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/public
+spring.datasource.username: root
+spring.datasource.password: password
+spring:
+  sql:
+    init:
+      mode: always
+spring.datasource.driver-class-name: com.mysql.jdbc.Driver
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

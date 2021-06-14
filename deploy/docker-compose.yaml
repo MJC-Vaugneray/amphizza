@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: amphizzazaza
+      MYSQL_DATABASE: amphizza
+      MYSQL_USER: amphizza
+      MYSQL_PASSWORD: amphizza
+    
+  amphizza:
+    depends_on:
+      - db
+    image: mjcvaugneray/amphizza:main
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: amphizza
+      MYSQL_PASSWORD: amphizza
+      MYSQL_DATABASE: amphizza
+volumes:
+  db_data: {}

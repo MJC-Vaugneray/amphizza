@@ -39,8 +39,16 @@ public class PizzaService {
     }
 
     @Transactional
-    public void pizzaDelivered(PizzaType pizzaType) {
-        final var order = orderRepository.findFirstByStatusAndPizzaType(OrderStatus.DELIVERED, pizzaType).orElseThrow(() -> new RuntimeException("No order ready"));
+    public void pizzaDelivered(Long orderId) {
+        final var order = orderRepository.findById(orderId / 10L)
+                .filter(o -> o.getStatus() != OrderStatus.PICKED_UP)
+                .orElseThrow(() -> new RuntimeException("No order found"));
+        if(order.getStatus() == OrderStatus.ORDERED) {
+            final var deceivedOrder = this.orderRepository.findFirstByStatusAndPizzaType(OrderStatus.DELIVERED, order.getPizzaType())
+                    .orElseThrow();
+            deceivedOrder.unready();
+            this.orderRepository.save(deceivedOrder);
+        }
         order.pickedUp();
         orderRepository.save(order);
     }

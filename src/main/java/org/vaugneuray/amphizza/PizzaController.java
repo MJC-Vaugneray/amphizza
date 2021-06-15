@@ -29,9 +29,9 @@ public class PizzaController {
         pizzaService.pizzaReady(pizzaType);
     }
 
-    @PostMapping("/{pizzaType}/delivered")
-    public void pizzaDelivered(@PathVariable PizzaType pizzaType) {
-        pizzaService.pizzaDelivered(pizzaType);
+    @PostMapping("/{id}/delivered")
+    public void pizzaDelivered(@PathVariable Long id) {
+        pizzaService.pizzaDelivered(id);
     }
 
     @GetMapping("/orders")

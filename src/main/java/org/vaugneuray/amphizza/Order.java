@@ -1,7 +1,12 @@
 package org.vaugneuray.amphizza;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.LocalDateTime;
 
 @Table("pizza_order")
 public class Order {
@@ -11,6 +16,9 @@ public class Order {
     private OrderStatus status = OrderStatus.ORDERED;
 
     private final PizzaType pizzaType;
+
+    @ReadOnlyProperty
+    private LocalDateTime createdAt;
 
     public OrderStatus getStatus() {
         return status;
@@ -44,4 +52,7 @@ public class Order {
         return this.id;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }

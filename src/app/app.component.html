@@ -1,4 +1,4 @@
-<div *ngIf="mode !== 'screen'">
+<div *ngIf="mode === 'pizza' || mode === 'order'">
     <div>
         <h2>Pizzas</h2>
         <div>
@@ -85,7 +85,15 @@
     </div>
 </div>
 <div *ngIf="mode === 'qrcode'">
-
+    <div class="background"></div>
+    <div style="font-size: 5rem; text-align: center;" >Commande n°{{ selectedOrder?.id }}</div>
+    <div style="font-size: 3rem; text-align: center;">Passé à {{ hourOfSelectedOrder }}</div>
+    <div style="font-size: 3rem; text-align: center;">{{ numberOfOrderInFront }} commandes doivent être servies avant vous</div>
+    <div style="position:absolute; width:100%; height:100%">
+        <img id="gif-wrap" style="  margin-left: auto;
+  margin-right: auto;
+  display: block;"/>
+    </div>
 </div>
 <div *ngIf="mode === 'screen'" class="screen">
     <div class="background"></div>

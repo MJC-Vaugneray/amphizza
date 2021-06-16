@@ -67,12 +67,12 @@ public class GraphicService {
         final var scaleFactor = (float) top.getWidth() / (float) bottom.getWidth();
         final var scaledBottomImg = scaleImg(bottom, scaleFactor);
 
-        int h = (int) (top.getHeight() + bottom.getHeight() * scaleFactor) + 25;
+        int h = (int) (top.getHeight() + bottom.getHeight() * scaleFactor) + 10;
         BufferedImage combined = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics g = combined.getGraphics();
         g.drawImage(top, 0, 0, null);
 
-        g.drawImage(scaledBottomImg, 0, top.getHeight() + 25, null);
+        g.drawImage(scaledBottomImg, 0, top.getHeight() + 10, null);
 
         g.dispose();
 

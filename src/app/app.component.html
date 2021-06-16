@@ -78,16 +78,29 @@
             <div>Go To Order</div>
             <fa-icon [icon]="icons.faChevronRight"></fa-icon>
         </button>
+        <button type="button" class="slide" (click)="goTo('screen')">
+            <div>Go To Screen</div>
+            <fa-icon [icon]="icons.faChevronRight"></fa-icon>
+        </button>
     </div>
+</div>
+<div *ngIf="mode === 'qrcode'">
+
 </div>
 <div *ngIf="mode === 'screen'" class="screen">
     <div class="background"></div>
 
-    <div style="display: flex; size: 50px">
-        <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex">
-            <div class="img" style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
-        </div>
+    <div style="display: flex; size: 50px; flex-direction: column">
 
+        <div style="font-size: 6rem; text-align: center;">Commandes à récupérer</div>
+        <div style="min-height: 3rem"></div>
+        <div style="display: flex;  flex-wrap: wrap; justify-content: center">
+            <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex;">
+                <div class="img"
+                     style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
+            </div>
+
+        </div>
     </div>
     <div class="footer">
         <pizza-loader></pizza-loader>

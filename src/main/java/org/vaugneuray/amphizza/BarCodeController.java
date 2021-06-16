@@ -1,5 +1,6 @@
 package org.vaugneuray.amphizza;
 
+import com.google.zxing.WriterException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,14 +28,15 @@ public class BarCodeController {
     }
 
     @RequestMapping(value = "/barcode", method = GET, produces = "image/png")
-    public BufferedImage getBarCodeForTest(@RequestParam Long id) throws IOException {
+    public BufferedImage getBarCodeForTest(@RequestParam Long id) throws IOException, WriterException {
         final var order = orderRepository.findById(id).orElseThrow();
         return graphicService.mergeImages(
                 graphicService.getLogoImage(),
                 barCodeService.barcodeImage(id.toString()),
                 graphicService.textToBufferedImage(order.getPizzaType().toString(), 40),
                 graphicService.textToBufferedImage(String.valueOf(order.getId()), 200),
-                graphicService.textToBufferedImage("Commandé à " + order.getCreatedAt().plusHours(2).format(DateTimeFormatter.ISO_TIME), 20)
+                graphicService.textToBufferedImage("Commandé à " + order.getCreatedAt().plusHours(2).format(DateTimeFormatter.ISO_TIME), 20),
+                barCodeService.generateQRCodeImage("https://amphiesta.mjc-vaugneray.fr/?mode=qrcode&id=" + id)
         );
     }
 }

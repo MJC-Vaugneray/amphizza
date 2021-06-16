@@ -1,80 +1,110 @@
-<div>
-    <h2>Pizzas</h2>
+<div *ngIf="mode !== 'screen'">
     <div>
+        <h2>Pizzas</h2>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>En préparation</td>
+                    <td>Prête</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let pizza of pizzas">
+                    <td>{{pizza.pizzaType}}</td>
+                    <td>{{pizza.doingNumber}}</td>
+                    <td>{{pizza.readyNumber}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="mode === 'pizza'">
+        <h2>Pizza Truck</h2>
+        <div>
+
+            <div>
+                <h3>Nouvelle pizza prête</h3>
+                <button class="fill" (click)="ready('CYCLOPE')">Cyclope</button>
+                <button class="fill" (click)="ready('QUATRE_FROMAGES')">4 Fromages</button>
+                <button class="fill" (click)="ready('PROVENCAL')">Provencal</button>
+            </div>
+            <div>
+                <h3>Scan code barre</h3>
+                <input placeholder="Cliquez ici puis scanner" (keyup)="onKey($event)">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Orders</h2>
+        <div *ngIf="mode === 'order'">
+            <h3>Nouvelle commande</h3>
+            <button class="fill" (click)="order('CYCLOPE')">Cyclope</button>
+            <button class="fill" (click)="order('QUATRE_FROMAGES')">4 Fromages</button>
+            <button class="fill" (click)="order('PROVENCAL')">Provencal</button>
+        </div>
         <table>
             <thead>
             <tr>
+                <td>N°</td>
                 <td>Type</td>
-                <td>En préparation</td>
-                <td>Prête</td>
+                <td>Status</td>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let pizza of pizzas">
-                <td>{{pizza.pizzaType}}</td>
-                <td>{{pizza.doingNumber}}</td>
-                <td>{{pizza.readyNumber}}</td>
+            <tr *ngFor="let order of sortedOrders">
+                <td>{{order.id}}</td>
+                <td>{{order.pizzaType}}</td>
+                <td>{{order.status}}</td>
+                <td *ngIf="mode === 'order'">
+                    <button class="fill" (click)="printBarcode(order.id)">Print ticket</button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-</div>
 
-<div *ngIf="mode === 'pizza'">
-    <h2>Pizza Truck</h2>
+    <br>
+
     <div>
+        <button type="button" class="slide" (click)="goTo('pizza')">
+            <div>Go To Pizza</div>
+            <fa-icon [icon]="icons.faChevronRight"></fa-icon>
+        </button>
+        <button type="button" class="slide" (click)="goTo('order')">
+            <div>Go To Order</div>
+            <fa-icon [icon]="icons.faChevronRight"></fa-icon>
+        </button>
+    </div>
+</div>
+<div *ngIf="mode === 'screen'" class="screen">
+    <div class="background"></div>
 
-        <div>
-            <h3>Nouvelle pizza prête</h3>
-            <button class="fill" (click)="ready('CYCLOPE')">Cyclope</button>
-            <button class="fill" (click)="ready('QUATRE_FROMAGES')">4 Fromages</button>
-            <button class="fill" (click)="ready('PROVENCAL')">Provencal</button>
+    <div style="display: flex; size: 50px">
+        <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex">
+            <div class="img" style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
         </div>
-        <div>
-            <h3>Scan code barre</h3>
-            <input placeholder="Cliquez ici puis scanner" (keyup)="onKey($event)">
-        </div>
+
+    </div>
+    <div class="footer">
+        <pizza-loader></pizza-loader>
+        <h2>
+            Commandes en préparation
+            <ul>
+                <li *ngFor="let preparingOrder of preparingOrders" style="    display: block;
+    width: 25%;
+    float: left;
+">
+                    <span>{{preparingOrder.id }} {{preparingOrder.pizzaType }} </span>
+                </li>
+            </ul>
+        </h2>
+    </div>
+
+    <div>
     </div>
 </div>
 
-<div>
-    <h2>Orders</h2>
-    <div *ngIf="mode === 'order'">
-        <h3>Nouvelle commande</h3>
-        <button class="fill" (click)="order('CYCLOPE')">Cyclope</button>
-        <button class="fill" (click)="order('QUATRE_FROMAGES')">4 Fromages</button>
-        <button class="fill" (click)="order('PROVENCAL')">Provencal</button>
-    </div>
-    <table>
-        <thead>
-        <tr>
-            <td>N°</td>
-            <td>Type</td>
-            <td>Status</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of sortedOrders">
-            <td>{{order.id}}</td>
-            <td>{{order.pizzaType}}</td>
-            <td>{{order.status}}</td>
-            <td *ngIf="mode === 'order'">
-                <button class="fill" (click)="printBarcode(order.id)">Print ticket</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<br>
-
-<div>
-    <button type="button" class="slide" (click)="goTo('pizza')">
-        <div>Go To Pizza</div>
-        <fa-icon [icon]="icons.faChevronRight"></fa-icon>
-    </button>
-    <button type="button" class="slide" (click)="goTo('order')">
-        <div>Go To Order</div>
-        <fa-icon [icon]="icons.faChevronRight"></fa-icon>
-    </button>
-</div>

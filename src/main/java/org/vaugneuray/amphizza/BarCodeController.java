@@ -32,9 +32,9 @@ public class BarCodeController {
         return graphicService.mergeImages(
                 graphicService.getLogoImage(),
                 barCodeService.barcodeImage(id.toString()),
-                graphicService.textToBufferedImage(order.getPizzaType().toString()),
-                graphicService.textToBufferedImage("N° de commande: " + order.getId()),
-                graphicService.textToBufferedImage("Commandé à " + order.getCreatedAt().plusHours(2).format(DateTimeFormatter.ISO_TIME))
+                graphicService.textToBufferedImage(order.getPizzaType().toString(), 40),
+                graphicService.textToBufferedImage(String.valueOf(order.getId()), 200),
+                graphicService.textToBufferedImage("Commandé à " + order.getCreatedAt().plusHours(2).format(DateTimeFormatter.ISO_TIME), 20)
         );
     }
 }

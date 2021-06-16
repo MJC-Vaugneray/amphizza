@@ -1,4 +1,4 @@
-<div *ngIf="mode !== 'screen'">
+<div *ngIf="mode === 'pizza' || mode === 'order'">
     <div>
         <h2>Pizzas</h2>
         <div>
@@ -78,16 +78,37 @@
             <div>Go To Order</div>
             <fa-icon [icon]="icons.faChevronRight"></fa-icon>
         </button>
+        <button type="button" class="slide" (click)="goTo('screen')">
+            <div>Go To Screen</div>
+            <fa-icon [icon]="icons.faChevronRight"></fa-icon>
+        </button>
+    </div>
+</div>
+<div *ngIf="mode === 'qrcode'">
+    <div class="background"></div>
+    <div style="font-size: 5rem; text-align: center;" >Commande n°{{ selectedOrder?.id }}</div>
+    <div style="font-size: 3rem; text-align: center;">Passé à {{ hourOfSelectedOrder }}</div>
+    <div style="font-size: 3rem; text-align: center;">{{ numberOfOrderInFront }} commandes doivent être servies avant vous</div>
+    <div style="position:absolute; width:100%; height:100%">
+        <img id="gif-wrap" style="  margin-left: auto;
+  margin-right: auto;
+  display: block;"/>
     </div>
 </div>
 <div *ngIf="mode === 'screen'" class="screen">
     <div class="background"></div>
 
-    <div style="display: flex; size: 50px">
-        <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex">
-            <div class="img" style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
-        </div>
+    <div style="display: flex; size: 50px; flex-direction: column">
 
+        <div style="font-size: 6rem; text-align: center;">Commandes à récupérer</div>
+        <div style="min-height: 3rem"></div>
+        <div style="display: flex;  flex-wrap: wrap; justify-content: center">
+            <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex;">
+                <div class="img"
+                     style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
+            </div>
+
+        </div>
     </div>
     <div class="footer">
         <pizza-loader></pizza-loader>

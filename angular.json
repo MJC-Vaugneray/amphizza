@@ -31,8 +31,7 @@
               "node_modules/typeface-roboto-mono/index.css"
 
             ],
-            "scripts": [],
-            "serviceWorker": true
+            "scripts": []
           },
           "configurations": {
             "production": {

@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from "@angular/route
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import {Order, Pizza} from "./types";
 import { interval } from 'rxjs'
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -99,6 +100,19 @@ export class AppComponent {
             .filter(o => o.status !== 'PICKED_UP')
             .reverse();
     }
+
+    get preparingOrders(): Order[] {
+        return this.orders
+            .sort((a: Order, b: Order) => a.id > b.id ? 1 : a.id === b.id ? 0 : -1)
+            .filter(o => o.status === 'ORDERED');
+    }
+
+    get readyOrders(): Order[] {
+        return this.orders
+            .sort((a: Order, b: Order) => a.id > b.id ? 1 : a.id === b.id ? 0 : -1)
+            .filter(o => o.status === 'DELIVERED');
+    }
+
 
 
     printBarcode(id: string | number) {

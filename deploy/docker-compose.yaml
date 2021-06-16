@@ -14,7 +14,7 @@ services:
   amphizza:
     depends_on:
       - db
-    image: mjcvaugneray/amphizza:main
+    image: registry.hub.docker.com/mjcvaugneray/amphizza:default
     ports:
       - "8080:8080"
     restart: always

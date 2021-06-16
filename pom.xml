@@ -81,6 +81,7 @@
                     </docker>
                     <image>
                         <name>registry.hub.docker.com/mjcvaugneray/amphizza:${image.tag}</name>
+                        <builder>gcr.io/paketo-buildpacks/builder:full-cf</builder>
                     </image>
                     <publish>${image.publish}</publish>
                 </configuration>

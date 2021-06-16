@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.Buffer;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 

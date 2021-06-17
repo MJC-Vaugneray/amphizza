@@ -60,8 +60,16 @@ export class AppComponent {
             }
         );
 
-        window.addEventListener('keypress', () => {
-            document.getElementById('scan')?.focus();
+        window.addEventListener('keypress', (event) => {
+            if(event.key === 'r') {
+                this.ready('QUATRE_FROMAGES')
+            } else  if(event.key === 'a') {
+                this.ready('CYCLOPE')
+            } else  if(event.key === 'o') {
+                this.ready('PROVENCAL')
+            } else {
+                document.getElementById('scan')?.focus();
+            }
         })
 
         this.getRandomGif();

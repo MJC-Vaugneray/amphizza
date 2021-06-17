@@ -112,7 +112,7 @@ export class AppComponent {
                     this.message = 'Commande n°' + res.id + ' (' + res.pizzaType +') validée';
                     (event.target as HTMLInputElement).value = '';
                 }, () => {
-                    this.message = 'Commande n°' + trimmed +' invalide'
+                    this.message = 'Commande n°' + trimmed +' invalide';
                     (event.target as HTMLInputElement).value = '';
                 })
         }

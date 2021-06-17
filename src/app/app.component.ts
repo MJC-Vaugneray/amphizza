@@ -20,7 +20,7 @@ export class AppComponent {
         faChevronRight
     }
 
-    title = 'client';
+    message: string = '';
     orders: Order[] = [];
     pizzas: Pizza[] = [];
 
@@ -92,10 +92,15 @@ export class AppComponent {
 
     onKey(event: KeyboardEvent) { // without type info
         if (event.key === 'Enter') {
-            this.http.post(`/${(event.target as HTMLInputElement).value.trim()}/delivered`, {})
-                .subscribe(() => {
+            this.message = '';
+            var trimmed = (event.target as HTMLInputElement).value.trim();
+            this.http.post(`/${trimmed}/delivered`, { })
+                .subscribe((res: any) => {
                     this.refreshPizzasAndOrder();
+                    this.message = 'Commande n°' + res.id + ' (' + res.pizzaType +') validée';
                     (event.target as HTMLInputElement).value = '';
+                }, () => {
+                    this.message = 'Commande n°' + trimmed +' invalide'
                 })
         }
     }

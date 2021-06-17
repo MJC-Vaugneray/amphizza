@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class PizzaController {
     private final PizzaService pizzaService;
@@ -30,8 +28,8 @@ public class PizzaController {
     }
 
     @PostMapping("/{id}/delivered")
-    public void pizzaDelivered(@PathVariable Long id) {
-        pizzaService.pizzaDelivered(id);
+    public Order pizzaDelivered(@PathVariable Long id) {
+        return pizzaService.pizzaDelivered(id);
     }
 
     @GetMapping("/orders")

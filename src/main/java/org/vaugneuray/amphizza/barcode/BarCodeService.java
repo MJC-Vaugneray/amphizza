@@ -31,7 +31,7 @@ public class BarCodeService {
     public BufferedImage generateQRCodeImage(String barcodeText) throws WriterException {
         QRCodeWriter barcodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix =
-                barcodeWriter.encode(barcodeText, BarcodeFormat.QR_CODE, 260, 260);
+                barcodeWriter.encode(barcodeText, BarcodeFormat.QR_CODE, 500, 500);
 
         return MatrixToImageWriter.toBufferedImage(bitMatrix);
     }

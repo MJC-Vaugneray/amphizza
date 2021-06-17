@@ -39,7 +39,7 @@ public class PizzaService {
     }
 
     @Transactional
-    public void pizzaDelivered(Long orderId) {
+    public Order pizzaDelivered(Long orderId) {
         final var order = orderRepository.findById(orderId / 10L)
                 .filter(o -> o.getStatus() != OrderStatus.PICKED_UP)
                 .orElseThrow(() -> new RuntimeException("No order found"));
@@ -50,6 +50,6 @@ public class PizzaService {
             this.orderRepository.save(deceivedOrder);
         }
         order.pickedUp();
-        orderRepository.save(order);
+        return orderRepository.save(order);
     }
 }

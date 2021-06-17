@@ -49,6 +49,9 @@ public class PizzaService {
             deceivedOrder.unready();
             this.orderRepository.save(deceivedOrder);
         }
+        pizzaRepository.findOneByPizzaType(order.getPizzaType())
+                .map(Pizza::pizzaPickedUp)
+                .ifPresent(pizzaRepository::save);
         order.pickedUp();
         return orderRepository.save(order);
     }

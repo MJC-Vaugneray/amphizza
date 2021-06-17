@@ -47,6 +47,10 @@ public class Pizza {
         return this;
     }
 
+    public Pizza pizzaPickedUp() {
+        this.readyNumber -= 1;
+        return this;
+    }
     public long getReadyNumber() {
         return readyNumber;
     }

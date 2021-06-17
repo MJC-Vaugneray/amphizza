@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from "@angular/router";
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import {Order, Pizza} from "./types";
 import {interval} from 'rxjs'
@@ -12,7 +12,6 @@ import {interval} from 'rxjs'
 })
 export class AppComponent {
     private selectedId?: number;
-    private notificationSent: boolean = false;
 
     constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
 
@@ -62,26 +61,12 @@ export class AppComponent {
         );
 
         this.getRandomGif();
-
-        Notification.requestPermission(function (status) {
-            // Cela permet d'utiliser Notification.permission avec Chrome/Safari
-            if (Notification.permission !== status) {
-                // @ts-ignore
-                // Notification.permission = status;
-            }
-        });
     }
 
     private refreshPizzasAndOrder() {
         this.http.get<any[]>('/orders')
             .subscribe(orders => {
                 this.orders = orders;
-                if(this.selectedId) {
-                    if(this.selectedOrder?.status === 'DELIVERED' && !this.notificationSent) {
-                        new Notification("La commande " + this.selectedId + ' est prête');
-                        this.notificationSent = true
-                    }
-                }
             })
 
         this.http.get<any[]>('/pizzas')

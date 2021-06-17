@@ -60,6 +60,10 @@ export class AppComponent {
             }
         );
 
+        window.addEventListener('keypress', () => {
+            document.getElementById('scan')?.focus();
+        })
+
         this.getRandomGif();
     }
 

@@ -17,17 +17,17 @@ public class PizzaController {
         this.orderRepository = orderRepository;
     }
 
-    @PostMapping("/{pizzaType}/new")
+    @PostMapping("/api/{pizzaType}/new")
     public Order newOrder(@PathVariable PizzaType pizzaType) {
         return pizzaService.newOrder(pizzaType);
     }
 
-    @PostMapping("/{pizzaType}/ready")
+    @PostMapping("/api/{pizzaType}/ready")
     public void pizzaReady(@PathVariable PizzaType pizzaType) {
         pizzaService.pizzaReady(pizzaType);
     }
 
-    @PostMapping("/{id}/delivered")
+    @PostMapping("/api/{id}/delivered")
     public Order pizzaDelivered(@PathVariable Long id) {
         return pizzaService.pizzaDelivered(id);
     }

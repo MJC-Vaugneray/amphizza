@@ -76,7 +76,7 @@ export class AppComponent {
     }
 
     order(pizzaType: string) {
-        this.http.post(`/${pizzaType}/new`, {})
+        this.http.post(`/api/${pizzaType}/new`, {})
             .subscribe((response: any) => {
                 this.refreshPizzasAndOrder();
                 this.printBarcode(response.id)
@@ -84,7 +84,7 @@ export class AppComponent {
     }
 
     ready(pizzaType: string) {
-        this.http.post(`/${pizzaType}/ready`, {})
+        this.http.post(`/api/${pizzaType}/ready`, {})
             .subscribe(() => {
                 this.refreshPizzasAndOrder();
             })
@@ -94,7 +94,7 @@ export class AppComponent {
         if (event.key === 'Enter') {
             this.message = '';
             var trimmed = (event.target as HTMLInputElement).value.trim();
-            this.http.post(`/${trimmed}/delivered`, { })
+            this.http.post(`/api/${trimmed}/delivered`, { })
                 .subscribe((res: any) => {
                     this.refreshPizzasAndOrder();
                     this.message = 'Commande n°' + res.id + ' (' + res.pizzaType +') validée';

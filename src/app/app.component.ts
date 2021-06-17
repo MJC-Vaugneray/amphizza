@@ -78,7 +78,6 @@ export class AppComponent {
     order(pizzaType: string) {
         this.http.post(`/${pizzaType}/new`, {})
             .subscribe((response: any) => {
-                console.log(response);
                 this.refreshPizzasAndOrder();
                 this.printBarcode(response.id)
             })
@@ -168,9 +167,10 @@ export class AppComponent {
 
         // Call Giphy API and render data
         this.http.get(giphyURL).subscribe((giphy: any) => {
-            console.log(giphy);
-            const gifdiv = document.getElementById('gif-wrap')as HTMLImageElement;
-            gifdiv.src = giphy.data.image_original_url
+            const gifdiv = document.getElementById('gif-wrap') as HTMLImageElement;
+            if (gifdiv) {
+                gifdiv.src = giphy.data.image_original_url
+            }
         })
     }
 

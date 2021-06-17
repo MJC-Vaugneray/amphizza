@@ -33,7 +33,7 @@
             </div>
             <div>
                 <h3>Scan code barre</h3>
-                <input placeholder="Cliquez ici puis scanner" (keyup)="onKey($event)">
+                <input placeholder="Cliquez ici puis scanner" (keyup)="onKey($event)" onblur="this.focus()" autofocus>
             </div>
         </div>
     </div>

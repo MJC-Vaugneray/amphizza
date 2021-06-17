@@ -9,7 +9,7 @@ button {
 
 /* Simple button styling -- No animation */
 .simple {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 200;
     letter-spacing: 1px;
     padding: 13px 50px 13px;
@@ -34,7 +34,7 @@ button {
 
 /* Fill button styling */
 .fill {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 200;
     letter-spacing: 1px;
     padding: 13px 13px 13px;
@@ -65,7 +65,7 @@ button {
 
 /* Slide button styling */
 .slide {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 200;
     letter-spacing: 1px;
     padding: 13px 30px 13px;

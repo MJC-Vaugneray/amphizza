@@ -113,6 +113,7 @@ export class AppComponent {
                     (event.target as HTMLInputElement).value = '';
                 }, () => {
                     this.message = 'Commande n°' + trimmed +' invalide'
+                    (event.target as HTMLInputElement).value = '';
                 })
         }
     }

@@ -9,5 +9,6 @@ export type Pizza = {
     id: number,
     pizzaType: string,
     doingNumber: number,
-    readyNumber: number
+    readyNumber: number,
+    doneNumber: number
 }

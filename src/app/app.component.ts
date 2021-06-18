@@ -111,7 +111,15 @@ export class AppComponent {
                     this.refreshPizzasAndOrder();
                     this.message = 'Commande n°' + res.id + ' (' + res.pizzaType +') validée';
                     (event.target as HTMLInputElement).value = '';
+                    document.body.style.backgroundColor = 'green'
+                    setTimeout(() => {
+                        document.body.style.backgroundColor = 'unset'
+                    }, 1000)
                 }, () => {
+                    document.body.style.backgroundColor = 'red'
+                    setTimeout(() => {
+                        document.body.style.backgroundColor = 'unset'
+                    }, 1000)
                     this.message = 'Commande n°' + trimmed +' invalide';
                     (event.target as HTMLInputElement).value = '';
                 })

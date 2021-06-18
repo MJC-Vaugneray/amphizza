@@ -5,15 +5,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @RestController
 public class PizzaController {
     private final PizzaService pizzaService;
-    private final PizzaRepository pizzaRepository;
     private final OrderRepository orderRepository;
 
-    public PizzaController(PizzaService pizzaService, PizzaRepository pizzaRepository, OrderRepository orderRepository) {
+    public PizzaController(PizzaService pizzaService, OrderRepository orderRepository) {
         this.pizzaService = pizzaService;
-        this.pizzaRepository = pizzaRepository;
         this.orderRepository = orderRepository;
     }
 
@@ -39,9 +42,25 @@ public class PizzaController {
 
     @GetMapping("/pizzas")
     public Iterable<Pizza> pizzas() {
-        return pizzaRepository.findAll();
+        final var pizzas = Map.of(
+                PizzaType.CYCLOPE, new Pizza(PizzaType.CYCLOPE),
+                PizzaType.PROVENCAL, new Pizza(PizzaType.PROVENCAL),
+                PizzaType.QUATRE_FROMAGES, new Pizza(PizzaType.QUATRE_FROMAGES)
+        );
+        orderRepository.findAll().forEach(order -> {
+            var current = pizzas.get(order.getPizzaType());
+            switch (order.getStatus()) {
+                case ORDERED:
+                    current.incrementDoing();
+                    break;
+                case DELIVERED:
+                    current.incrementReady();
+                    break;
+                case PICKED_UP:
+                    current.incrementDone();
+                    break;
+            }
+        });
+        return pizzas.values();
     }
-
-
-
 }

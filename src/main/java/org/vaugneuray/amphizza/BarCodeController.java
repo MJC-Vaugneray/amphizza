@@ -34,7 +34,7 @@ public class BarCodeController {
                 graphicService.getLogoImage(),
                 barCodeService.barcodeImage(id.toString()),
                 graphicService.textToBufferedImage(order.getPizzaType().toString(), 40),
-                graphicService.textToBufferedImage(String.valueOf(order.getId()), 200),
+                graphicService.textToBufferedImage(order.getPizzaType().toString().charAt(0) + "-" + order.getId(), 80),
                 graphicService.textToBufferedImage("Commandé à " + order.getCreatedAt().plusHours(2).format(DateTimeFormatter.ISO_TIME), 20),
                 barCodeService.generateQRCodeImage("https://amphiesta.mjc-vaugneray.fr/?mode=qrcode&id=" + id)
         );

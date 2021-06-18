@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,6 +62,6 @@ public class PizzaController {
                     break;
             }
         });
-        return pizzas.values();
+        return pizzas.values().stream().sorted(Comparator.comparing(Pizza::getPizzaType)).collect(Collectors.toList());
     }
 }

@@ -37,6 +37,17 @@
                 {{ message }}
             </div>
         </div>
+        <div style="display: flex; size: 50px; flex-direction: column">
+
+            <h2>Commandes à récupérer</h2>
+            <div style="min-height: 3rem"></div>
+            <div style="display: flex;  flex-wrap: wrap; justify-content: center">
+                <div *ngFor="let readyOrder of readyOrders" class="toast show" style="display: flex;">
+                    <div class="img"
+                         style="background-color: #ddffdd; text-align: center; padding: 5px; font-size: 8rem; min-width: 10rem;">{{readyOrder.id}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div *ngIf="mode === 'order'">
@@ -89,7 +100,11 @@
     <div class="background"></div>
     <div style="font-size: 5rem; text-align: center;" >Commande n°{{ selectedOrder?.id }}</div>
     <div style="font-size: 3rem; text-align: center;">Passé à {{ hourOfSelectedOrder }}</div>
-    <div style="font-size: 3rem; text-align: center;">{{ numberOfOrderInFront }} commandes doivent être servies avant vous</div>
+    <!--     ORDERED, DELIVERED, PICKED_UP
+ -->
+    <div *ngIf="selectedOrder?.status === 'ORDERED'" style="font-size: 3rem; text-align: center;">{{ numberOfOrderInFront }} commandes doivent être servies avant vous</div>
+    <div *ngIf="selectedOrder?.status === 'DELIVERED'" style="font-size: 3rem; text-align: center;">Votre commande est prếte, allez la chercher !</div>
+    <div *ngIf="selectedOrder?.status === 'PICKED_UP'" style="font-size: 3rem; text-align: center;">Vous avez déjà récupéré votre commande</div>
     <div style="position:absolute; width:100%; height:100%">
         <img id="gif-wrap" style="  margin-left: auto;
   margin-right: auto;
@@ -115,15 +130,16 @@
         <pizza-loader></pizza-loader>
         <h2>
             Commandes en préparation
-            <ul>
-                <li *ngFor="let preparingOrder of preparingOrders" style="    display: block;
+        </h2>
+        <ul>
+                <li *ngFor="let preparingOrder of preparingOrders" style="display: block;
     width: 33%;
+    min-width: 250px;
     float: left;
 ">
                     <span>{{preparingOrder.id }} {{preparingOrder.pizzaType }} </span>
                 </li>
             </ul>
-        </h2>
     </div>
 
     <div>
